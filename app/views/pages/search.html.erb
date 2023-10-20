@@ -1,8 +1,16 @@
+
+<% if current_user %>
+
 <div style="text-align: right;">
     <%= link_to "Profilo", user_path(@user.id) %>
     <%= link_to "Home", root_path %>
+</div> 
 
-  </div> 
+<%else %>
+<div style="text-align: right;">
+    <%= link_to "Home", root_path %>
+<%end %>
+
 
 <div style="flex: 1; text-align: left;"> 
     <% if current_user %>

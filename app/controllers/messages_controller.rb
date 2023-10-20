@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
     @message = Message.where(user_id: params[:user_id])
     @message.each do |message|
      
- if  message.destroy
+    if  message.destroy
       flash[:success] = "Richiesta risolta con successo."
     else
       flash[:error] = "Impossibile risolvere richiesta."

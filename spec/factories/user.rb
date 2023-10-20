@@ -1,9 +1,13 @@
-FactoryBot.define do    
-    factory :user, class: User do    
-        email { "the_best_fighter@hotmail.it"}
-        password {"antonio"}
-        role {0}
-    end
-end
 
+FactoryBot.define do
+    factory :user do
+      email { 'test@example.com' }
+      password { 'password' }
+      full_name { 'John Doe' }
+      uid { '12345' }
+      avatar_url { 'http://example.com/avatar.png' }
+      role { 0 }
+      favorite_category { "Elettronica" }
+    end
+  end
   

@@ -3,6 +3,6 @@ FactoryBot.define do
         email { "antonio.cardinali@hotmail.it"}
         password {"antonio"}
         role {2}
-        
+        full_name {"Giuseppe"}
     end
 end

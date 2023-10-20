@@ -20,11 +20,11 @@ class PagesController < ApplicationController
   end
 
   def cambia 
-  locale = params[:locale].to_sym
-  I18n.locale = locale
-  session[:select_l] = I18n.locale
-  redirect_to root_path
-end
+      locale = params[:locale].to_sym
+      I18n.locale = locale
+      session[:select_l] = I18n.locale
+      redirect_to root_path
+  end
   
 
 def search

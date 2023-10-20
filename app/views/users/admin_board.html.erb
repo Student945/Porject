@@ -1,14 +1,15 @@
 
-
+<% if current_user.admin?%>
 <h1><%= "Admin Board"%></h1>
 
 <div align="left">
     <h1><%=t("richieste")%></h1>
     <ul>
       <% @messages.each do |message| %>
-        <%= t("richiesta")+message.content %>
+        <% user=User.find(message.user_id) %>
+        <%= t("richiesta")+" Utente:"+user.full_name%> 
+       <p> <%= message.content%></p>
         <%= button_to t("risolta"), user_message_path(user_id: message.user_id, id: message.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
       <% end %>
     </ul>
   </div>
@@ -18,9 +19,8 @@
   <% @users.each do |user| %>
     <% if !user.admin? %>
      <% if !user.moderator? %>
-         <%= t("utente")+ " " +user.full_name%>
-            <%= link_to t("profilo"), user_path(id: user.id) %>
-          
+        <%= t("utente")+ " " +user.full_name%>
+        <%= link_to t("profilo"), user_path(id: user.id) %>
           <%= button_to t("elimina"), user_path(id: user.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
           <p><%= link_to t("modmake"), set_mod_path(id: user.id)%></p>
     <%else %>
@@ -41,3 +41,35 @@
 <h3><%=t("ricesa")+ @researches.count.to_s%></h3>
 <h3> <%= link_to "Home", root_path %> </h3>
 
+<%else%>
+<h1><%= "Moderator Board"%></h1>
+
+<div align="left">
+    <h1><%=t("richieste")%></h1>
+    <ul>
+      <% @messages.each do |message| %>
+        <% user=User.find(message.user_id) %>
+        <%= t("richiesta")+ "Utente:"+user.full_name%> 
+       <p> <%= message.content%></p>
+        <%= button_to t("risolta"), user_message_path(user_id: message.user_id, id: message.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+      <% end %>
+    </ul>
+  </div>
+
+  <div align="left">
+
+  <% @users.each do |user| %>
+    <% if !user.admin? %>
+     <% if !user.moderator? %>
+         <%= t("utente")+ " " +user.full_name%>
+            <%= link_to t("profilo"), user_path(id: user.id) %>
+            <%= button_to t("elimina"), user_path(id: user.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+         <% end %>
+      <%end %>
+  <%end%>
+  </div>
+
+
+  <h3> <%= link_to "Home", root_path %> </h3>
+ 
+<%end%>

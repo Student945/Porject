@@ -4,19 +4,23 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user||= User.new
+
+  if user.new_record?
+    can :create, User
+  end
 
 if user.present?
 
-    can :create, Relationship
-    can :destroy, Relationship
+    can :create, Relationship, follower_id: user.id
+    can :destroy, Relationship, follower_id: user.id
     can :destroy, Research, user_id: user.id
     can :create, Research, user_id: user.id
     can :read, Research
-    can :create, User
     can :read, User
     can :destroy, User, id: user.id
     can :update, User, id: user.id
-    can :create, Review
+    can :create, Review, user_id: user.id
     can :read, Review
     can :destroy, Review, user_id: user.id
     can :update, Review, user_id: user.id
@@ -32,6 +36,9 @@ if user.moderator?
     can :update, Review
     can :read, Review
     can :read, Research
+    can :destroy, Message
+    can :admin_board, User
+    can :read, Message
 
 end
 
@@ -40,9 +47,7 @@ if user.admin?
     can :manage, Review
     can :manage, User
     can :manage, Research
-
-
-  end
+end
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

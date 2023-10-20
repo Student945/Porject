@@ -2,12 +2,11 @@ require 'cancancan'
 
 class UsersController < ApplicationController
   load_and_authorize_resource
-
   before_action :authenticate_user!
   
  
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
   end
 
   
@@ -51,7 +50,8 @@ end
   def f_review
     @review = Review.find(params[:id])
   end
-  
+
+
 end
 
 

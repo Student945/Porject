@@ -101,6 +101,9 @@
     <% if current_user && current_user.admin?%>
     <%= link_to "Admin", admin_board_path %>
     <%end%>
+    <% if current_user && current_user.moderator?%>
+    <%= link_to "Moderator panel", admin_board_path %>
+    <%end%>
     <%= link_to "Inglese", cambia_path(locale: :en) %>
     <%= link_to "Italiano", cambia_path(locale: :it) %>
     <% if current_user && current_user.role==0 %>

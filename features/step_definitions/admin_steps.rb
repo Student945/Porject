@@ -2,9 +2,9 @@ Given('I am a admin') do
     @user=FactoryBot.create(:admin)
 end
   
-And  ("I am on the Sign in Page admin")do
-    visit "http://127.0.0.1:3000/users/sign_in"
-  end
+And("I am on the Sign in Page admin")do
+  visit "http://127.0.0.1:3000/users/sign_in"
+end
   
   When('I insert email email and password admin') do
     fill_in("user_email", with: @user.email)
@@ -20,7 +20,7 @@ And  ("I am on the Sign in Page admin")do
   end
   
 
-  Given('there is a user') do
+Given('there is a user') do
     @user=FactoryBot.create(:user)
 end
   
